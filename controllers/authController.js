@@ -8,6 +8,15 @@ const JWT_SECRET = process.env.JWT_SECRET || "Tickeasy_SECRET";
 // 註冊使用者
 exports.register = async (req, res) => {
   try {
+
+    console.log("register測試",dataSource.options)
+
+    if (!dataSource.isInitialized) {
+      console.log("初始化資料庫連線中");
+      await dataSource.initialize();
+      console.log("資料庫連線成功");
+    }
+
     const { email, password, name, nickname, phone, birthday } = req.body;
 
     if (!email || !password || !name) {
@@ -53,6 +62,9 @@ exports.register = async (req, res) => {
       role: "user",
       isEmailVerified: false,
     });
+
+    console.log(`📬寄送驗證信 ${email}`);
+
 
     const savedUser = await userRepo.save(newUser);
 
