@@ -18,7 +18,7 @@ const dataSource = new DataSource({
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
   username: process.env.DB_USERNAME || "testHexschool",
   password: process.env.DB_PASSWORD || "pgStartkit4test",
-  database: process.env.DB_DATABASE || "test",
+  database: process.env.DB_NAME || "test",
   entities: [
     User,
     Concert,
