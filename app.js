@@ -5,7 +5,7 @@ const app = express();
 dataSource
   .initialize()
   .then(() => {
-    console.log("Data Source 已啟動");
+    console.log("Data Source啟動");
   })
   .catch((err) => {
     console.error("資料庫連線失敗", err);
@@ -13,9 +13,12 @@ dataSource
 
 app.use(express.json());
 
-// 路由：只開啟 auth 註冊
+// 路由
 const authRoute = require("./routes/auth");
+const userRoute = require("./routes/user");
+
 app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/users", userRoute);
 
 // 404
 app.use((req, res) => {
