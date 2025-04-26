@@ -9,9 +9,7 @@ const secret = require("./secret");
 //   throw result.error;
 // }
 
-if (result.error) {
-  throw result.error;
-}
+require('dotenv').config();
 
 const config = {
   db,
