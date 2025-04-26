@@ -12,15 +12,13 @@ const Ticket = require("../entities/Ticket");
 const TicketType = require("../entities/TicketType");
 const Venue = require("../entities/Venue");
 
-// db setting
 const dataSource = new DataSource({
   type: "postgres",
   host: process.env.DB_HOST || "localhost",
   port: process.env.DB_PORT ? parseInt(process.env.DB_PORT, 10) : 5432,
   username: process.env.DB_USERNAME || "testHexschool",
   password: process.env.DB_PASSWORD || "pgStartkit4test",
-  database: process.env.DB_NAME || "test",
-  // register entities
+  database: process.env.DB_DATABASE || "test",
   entities: [
     User,
     Concert,
@@ -34,8 +32,9 @@ const dataSource = new DataSource({
     TicketType,
     Venue
   ],
-  logging: false,
-  synchronize: true,
+  logging: process.env.LOG_LEVEL === "debug" ? true : false,
+  synchronize: process.env.DB_SYNCHRONIZE === "true",
+  ssl: process.env.DB_ENABLE_SSL === "true" ? { rejectUnauthorized: false } : false,
 });
 
 module.exports = { dataSource };
