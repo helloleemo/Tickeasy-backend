@@ -71,7 +71,7 @@ exports.register = async (req, res) => {
     console.log(`寄送到${email}`);
 
     const token = jwt.sign(
-      { id: savedUser.id, email: savedUser.email, role: savedUser.role },
+      { id: savedUser.userId, email: savedUser.email, role: savedUser.role },
       JWT_SECRET,
       { expiresIn: "30d" }
     );
