@@ -32,6 +32,8 @@ exports.register = async (req, res) => {
       return res.status(400).json({ status: "failed", message: "手機號碼格式不正確" });
     }
 
+    console.log("資料庫測試",dataSource.options)
+
     const userRepo = dataSource.getRepository("User");
     const existUser = await userRepo.findOne({ where: { email } });
 
