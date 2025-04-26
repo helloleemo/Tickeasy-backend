@@ -5,10 +5,10 @@ const app = express();
 dataSource
   .initialize()
   .then(() => {
-    console.log("✅ Data Source 已啟動");
+    console.log("Data Source 已啟動");
   })
   .catch((err) => {
-    console.error("❌ 資料庫連線失敗", err);
+    console.error("資料庫連線失敗", err);
   });
 
 app.use(express.json());
