@@ -35,6 +35,7 @@ const dataSource = new DataSource({
     Venue
   ],
   logging: false,
+  synchronize: true,
 });
 
 module.exports = { dataSource };
